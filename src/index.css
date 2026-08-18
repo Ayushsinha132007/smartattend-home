@@ -2,53 +2,74 @@
 
 @import "tailwindcss";
 
+/* Tailwind v4: use .dark class instead of system preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   font-family: "DM Sans", sans-serif;
-
   color: #111111;
   background: #f7f7f5;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   --page-bg: #f7f7f5;
   --surface: #ffffff;
-  --surface-soft: #f0f0ed;
-  --surface-muted: #e8e8e3;
-
+  --surface-soft: #eeeee9;
+  --surface-muted: #fafafa;
   --text-primary: #111111;
-  --text-secondary: rgba(17, 17, 17, 0.55);
-  --text-muted: rgba(17, 17, 17, 0.4);
-
-  --border: rgba(17, 17, 17, 0.08);
-  --border-strong: rgba(17, 17, 17, 0.15);
-
-  --accent: #dff5e9;
-  --accent-strong: #28734e;
-
-  color-scheme: light;
+  --text-secondary: rgba(17, 17, 17, 0.5);
+  --text-muted: rgba(17, 17, 17, 0.35);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --shadow-color: rgba(0, 0, 0, 0.08);
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
   background: var(--page-bg);
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --page-bg: #0b0b0b;
+  --surface: #151515;
+  --surface-soft: #1b1b19;
+  --surface-muted: #181818;
+  --text-primary: #f5f5f3;
+  --text-secondary: rgba(245, 245, 243, 0.58);
+  --text-muted: rgba(245, 245, 243, 0.35);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
 body {
   margin: 0;
-
   min-width: 320px;
   min-height: 100vh;
-
+  max-width: 100%;
+  overflow-x: hidden;
   background: var(--page-bg);
   color: var(--text-primary);
 
   transition:
-    background-color 0.4s ease,
-    color 0.4s ease;
+    background-color 450ms ease,
+    color 450ms ease;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--page-bg);
+
+  transition:
+    background-color 450ms ease,
+    color 450ms ease;
 }
 
 * {
@@ -56,7 +77,10 @@ body {
 }
 
 button,
-a {
+a,
+input,
+textarea,
+select {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -70,17 +94,18 @@ a {
 }
 
 img,
-svg {
+svg,
+video,
+canvas {
   max-width: 100%;
 }
 
-button {
-  cursor: pointer;
+img {
+  height: auto;
 }
 
-::selection {
-  background: #111111;
-  color: #ffffff;
+svg {
+  flex-shrink: 0;
 }
 
 :focus-visible {
@@ -88,102 +113,286 @@ button {
   outline-offset: 3px;
 }
 
-/* -------------------------------- */
-/* Smooth theme transitions          */
-/* -------------------------------- */
+::selection {
+  background: var(--text-primary);
+  color: var(--page-bg);
+}
+
+/* -------------------------------------------------------
+   DARK MODE — GLOBAL SURFACE / TEXT ADAPTATION
+   ------------------------------------------------------- */
+
+/* Page backgrounds */
+html.dark .bg-\[\#f7f7f5\] {
+  background-color: var(--page-bg) !important;
+}
+
+html.dark .bg-\[\#eeeee9\] {
+  background-color: var(--surface-soft) !important;
+}
+
+html.dark .bg-white {
+  background-color: var(--surface) !important;
+}
+
+/* Softer white surfaces */
+html.dark .bg-\[\#fafafa\] {
+  background-color: #191919 !important;
+}
+
+/* Primary text */
+html.dark .text-\[\#111111\] {
+  color: var(--text-primary) !important;
+}
+
+/* Common black text utilities */
+html.dark .text-black {
+  color: var(--text-primary) !important;
+}
+
+/* Black opacity text */
+html.dark .text-black\/25 {
+  color: rgba(245, 245, 243, 0.25) !important;
+}
+
+html.dark .text-black\/30 {
+  color: rgba(245, 245, 243, 0.30) !important;
+}
+
+html.dark .text-black\/35 {
+  color: rgba(245, 245, 243, 0.35) !important;
+}
+
+html.dark .text-black\/40 {
+  color: rgba(245, 245, 243, 0.40) !important;
+}
+
+html.dark .text-black\/45 {
+  color: rgba(245, 245, 243, 0.45) !important;
+}
+
+html.dark .text-black\/50 {
+  color: rgba(245, 245, 243, 0.50) !important;
+}
+
+html.dark .text-black\/55 {
+  color: rgba(245, 245, 243, 0.55) !important;
+}
+
+html.dark .text-black\/60 {
+  color: rgba(245, 245, 243, 0.60) !important;
+}
+
+html.dark .text-black\/65 {
+  color: rgba(245, 245, 243, 0.65) !important;
+}
+
+/* Borders */
+html.dark .border-black\/6 {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.dark .border-black\/8 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .border-black\/10 {
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+html.dark .border-black\/12 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.dark .border-black\/15 {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.dark .border-black\/20 {
+  border-color: rgba(255, 255, 255, 0.20) !important;
+}
+
+html.dark .border-black\/25 {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+html.dark .border-black\/30 {
+  border-color: rgba(255, 255, 255, 0.30) !important;
+}
+
+/* Hover surfaces */
+html.dark .hover\:bg-\[\#fafafa\]:hover {
+  background-color: #202020 !important;
+}
+
+html.dark .hover\:bg-black\/\[0\.035\]:hover {
+  background-color: rgba(255, 255, 255, 0.035) !important;
+}
+
+html.dark .hover\:bg-black\/\[0\.04\]:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* -------------------------------------------------------
+   DARK MODE — WHITE / BLACK CONTRAST FIXES
+   ------------------------------------------------------- */
+
+/* White buttons/cards should become dark surfaces */
+html.dark .bg-white.text-\[\#111111\] {
+  background-color: #f4f4f1 !important;
+  color: #111111 !important;
+}
+
+/* Black CTA surfaces stay strong */
+html.dark .bg-\[\#111111\] {
+  background-color: #111111 !important;
+}
+
+/* Dark CTA text remains readable */
+html.dark .bg-\[\#111111\].text-white,
+html.dark .bg-\[\#111111\] .text-white {
+  color: #ffffff !important;
+}
+
+/* White CTA in dark sections remains white */
+html.dark .bg-white.text-white {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+
+/* -------------------------------------------------------
+   DARK MODE — SHADOWS
+   ------------------------------------------------------- */
+
+html.dark .shadow-sm {
+  --tw-shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+html.dark .shadow-md {
+  --tw-shadow-color: rgba(0, 0, 0, 0.45);
+}
+
+/* -------------------------------------------------------
+   DARK MODE — INSIGHT CARDS
+   ------------------------------------------------------- */
+
+html.dark .bg-\[\#e6f5ed\] {
+  background-color: rgba(66, 180, 124, 0.14) !important;
+}
+
+html.dark .bg-\[\#edf7f1\] {
+  background-color: rgba(66, 180, 124, 0.12) !important;
+}
+
+html.dark .bg-\[\#f5eee1\] {
+  background-color: rgba(202, 160, 82, 0.14) !important;
+}
+
+html.dark .bg-\[\#f8f1e7\] {
+  background-color: rgba(202, 160, 82, 0.12) !important;
+}
+
+html.dark .bg-\[\#f2e7e7\] {
+  background-color: rgba(190, 91, 91, 0.14) !important;
+}
+
+html.dark .bg-\[\#f5eaea\] {
+  background-color: rgba(190, 91, 91, 0.12) !important;
+}
+
+/* -------------------------------------------------------
+   DARK MODE — PRODUCT / MOCK DASHBOARD SURFACES
+   ------------------------------------------------------- */
+
+html.dark .bg-\[\#f7f7f5\] {
+  background-color: #101010 !important;
+}
+
+/* -------------------------------------------------------
+   SMOOTH THEME TRANSITION
+   ------------------------------------------------------- */
 
 html,
 body,
-header,
+#root,
 nav,
 section,
 footer,
-div,
-a,
-button,
 article,
-span,
-p,
+button,
+a,
+div,
+span {
+  transition:
+    background-color 350ms ease,
+    border-color 350ms ease,
+    color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+/* Do not slow down Framer Motion transforms */
+[style*="transform"] {
+  transition-property:
+    background-color,
+    border-color,
+    color,
+    box-shadow;
+}
+
+/* -------------------------------------------------------
+   CONTENT SAFETY
+   ------------------------------------------------------- */
+
 h1,
 h2,
-h3 {
-  transition:
-    background-color 0.35s ease,
-    border-color 0.35s ease,
-    color 0.35s ease,
-    box-shadow 0.35s ease;
+h3,
+h4,
+h5,
+h6,
+p {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
-/* -------------------------------- */
-/* Dark theme foundation             */
-/* -------------------------------- */
-
-html.dark {
-  color-scheme: dark;
-
-  --page-bg: #0b0b0b;
-  --surface: #151515;
-  --surface-soft: #1c1c1c;
-  --surface-muted: #242424;
-
-  --text-primary: #f5f5f3;
-  --text-secondary: rgba(245, 245, 243, 0.62);
-  --text-muted: rgba(245, 245, 243, 0.42);
-
-  --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.18);
-
-  --accent: #183c2c;
-  --accent-strong: #9be4bd;
+/* Prevent long URLs/text from causing overflow */
+a,
+button,
+span,
+p {
+  overflow-wrap: anywhere;
 }
 
-html.dark body {
-  background: var(--page-bg);
-  color: var(--text-primary);
+/* Mobile safety */
+@media (max-width: 639px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  section {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  a,
+  button {
+    max-width: 100%;
+  }
 }
 
-/* -------------------------------- */
-/* Scrollbar                         */
-/* -------------------------------- */
-
-html {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(17, 17, 17, 0.25) transparent;
+/* Tablet / desktop safety */
+@media (min-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
 }
 
-html.dark {
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  background: rgba(17, 17, 17, 0.2);
-}
-
-html.dark ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* -------------------------------- */
-/* Selection                         */
-/* -------------------------------- */
-
-html.dark ::selection {
-  background: #ffffff;
-  color: #111111;
-}
-
-/* -------------------------------- */
-/* Reduced motion                    */
-/* -------------------------------- */
+/* -------------------------------------------------------
+   ACCESSIBILITY
+   ------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -197,16 +406,5 @@ html.dark ::selection {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* -------------------------------- */
-/* Mobile safety                     */
-/* -------------------------------- */
-
-@media (max-width: 640px) {
-  html,
-  body {
-    overflow-x: hidden;
   }
 }
