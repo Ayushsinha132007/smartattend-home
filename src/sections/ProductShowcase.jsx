@@ -112,7 +112,7 @@ function ProductShowcase() {
               <BarChart3 size={19} />
             </div>
 
-            <p className="mt-7 text-xs font-semibold uppercase tracking-[0.18em] text-black/40">
+            <p className="mt-7 text-xs font-semibold uppercase tracking-[0.18em] text-black/40 dark:text-white/55">
               The product
             </p>
 
@@ -120,7 +120,7 @@ function ProductShowcase() {
               Everything you need to understand attendance.
             </h2>
 
-            <p className="mt-6 max-w-lg text-base leading-7 text-black/50">
+            <p className="mt-6 max-w-lg text-base leading-7 text-black/50 dark:text-white/60">
               One focused workspace for classes, attendance patterns,
               students who need attention, and the decisions behind the
               numbers.
@@ -128,7 +128,7 @@ function ProductShowcase() {
 
             <a
               href="#insights"
-              className="group mt-8 inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-black/15 bg-white px-5 py-3 text-sm font-bold text-[#111111] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-black/30 hover:bg-[#fafafa] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+              className="group mt-8 inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-black/15 bg-white dark:bg-[#151515] px-5 py-3 text-sm font-bold text-[#111111] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-black/30 hover:bg-[#fafafa] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               Explore insights
 
@@ -153,7 +153,7 @@ function ProductShowcase() {
                   transition={{
                     delay: 0.2 + index * 0.08,
                   }}
-                  className="flex items-center gap-2.5 text-xs font-medium text-black/45"
+                  className="flex items-center gap-2.5 text-xs font-medium text-black/45 dark:text-white/55"
                 >
                   <CheckCircle2
                     size={15}
@@ -202,16 +202,16 @@ function ProductShowcase() {
               className="absolute -inset-8 -z-10 rounded-full bg-[#e7e5dd] blur-3xl"
             />
 
-            <div className="overflow-hidden rounded-[28px] border-[8px] border-[#111111] bg-[#f7f7f5] shadow-[0_35px_90px_rgba(0,0,0,0.13)]">
+            <div className="overflow-hidden rounded-[28px] border-[8px] border-[#111111] dark:border-[#111111] bg-[#f7f7f5] dark:bg-[#111111] dark:bg-[#111111] shadow-[0_35px_90px_rgba(0,0,0,0.13)]">
               {/* TOP BAR */}
-              <div className="flex items-center justify-between border-b border-black/5 bg-white px-4 py-3 sm:px-5 sm:py-4">
+              <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] px-4 py-3 sm:px-5 sm:py-4">
                 <div className="flex items-center gap-2">
                   <CalendarDays
                     size={14}
-                    className="text-black/35"
+                    className="text-black/35 dark:text-white/55"
                   />
 
-                  <span className="text-[10px] font-medium text-black/45">
+                  <span className="text-[10px] font-medium text-black/45 dark:text-white/55">
                     Tuesday, August 18
                   </span>
                 </div>
@@ -221,7 +221,7 @@ function ProductShowcase() {
                   onChange={(event) =>
                     setSelectedWeek(event.target.value)
                   }
-                  className="cursor-pointer appearance-none rounded-full border border-black/8 bg-white px-3 py-1.5 text-[10px] font-semibold text-black/55 outline-none"
+                  className="cursor-pointer appearance-none rounded-full border border-black/8 dark:border-white/12 bg-white dark:bg-[#151515] px-3 py-1.5 text-[10px] font-semibold text-black/55 outline-none"
                 >
                   <option>This week</option>
                   <option>Last week</option>
@@ -234,23 +234,23 @@ function ProductShowcase() {
                 {/* Dashboard heading */}
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-[10px] font-medium text-black/35">
+                    <p className="text-[10px] font-medium text-black/35 dark:text-white/55">
                       SmartAttend workspace
                     </p>
 
-                    <h3 className="mt-1 text-xl font-bold tracking-tight text-[#111111]">
+                    <h3 className="mt-1 text-xl font-bold tracking-tight text-[#111111] dark:text-white">
                       Attendance overview
                     </h3>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-[10px] text-black/30">
+                  <div className="flex items-center gap-1.5 text-[10px] text-black/30 dark:text-white/50">
                     <Clock3 size={12} />
                     Updated today
                   </div>
                 </div>
 
                 {/* TABS */}
-                <div className="mt-5 flex gap-1 overflow-x-auto rounded-2xl bg-[#eeeeea] p-1">
+                <div className="mt-5 flex gap-1 overflow-x-auto rounded-2xl bg-[#eeeeea] dark:bg-[#1b1b1b] p-1">
                   {views.map((view) => {
                     const Icon = view.icon;
                     const isActive = activeView === view.id;
@@ -265,7 +265,7 @@ function ProductShowcase() {
                         {isActive && (
                           <motion.span
                             layoutId="product-tab"
-                            className="absolute inset-0 rounded-xl bg-white shadow-sm"
+                            className="absolute inset-0 rounded-xl bg-white dark:bg-[#151515] shadow-sm"
                             transition={{
                               type: "spring",
                               stiffness: 400,
@@ -278,7 +278,7 @@ function ProductShowcase() {
                           className={`relative z-10 flex items-center gap-1.5 ${
                             isActive
                               ? "text-[#111111]"
-                              : "text-black/35"
+                              : "text-black/35 dark:text-white/55"
                           }`}
                         >
                           <Icon size={12} />
@@ -381,14 +381,14 @@ function ProductShowcase() {
                           duration: 0.3,
                         }}
                       >
-                        <div className="rounded-2xl border border-black/5 bg-white p-4 sm:p-5">
+                        <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] p-4 sm:p-5">
                           <div className="flex items-start justify-between">
                             <div>
-                              <p className="text-[9px] text-black/35">
+                              <p className="text-[9px] text-black/35 dark:text-white/55">
                                 Attendance performance
                               </p>
 
-                              <p className="mt-1 text-base font-bold text-[#111111]">
+                              <p className="mt-1 text-base font-bold text-[#111111] dark:text-white">
                                 Weekly attendance trend
                               </p>
                             </div>
@@ -398,7 +398,7 @@ function ProductShowcase() {
                             </div>
                           </div>
 
-                          <div className="mt-7 flex h-52 items-end gap-2 border-b border-black/5">
+                          <div className="mt-7 flex h-52 items-end gap-2 border-b border-black/5 dark:border-white/10">
                             {attendanceData.map(
                               (height, index) => (
                                 <motion.div
@@ -416,14 +416,14 @@ function ProductShowcase() {
                                     index ===
                                     attendanceData.length - 1
                                       ? "bg-[#111111]"
-                                      : "bg-black/10"
+                                      : "bg-black/10 dark:bg-white/10"
                                   }`}
                                 />
                               ),
                             )}
                           </div>
 
-                          <div className="mt-3 flex justify-between text-[8px] text-black/25">
+                          <div className="mt-3 flex justify-between text-[8px] text-black/25 dark:text-white/40">
                             {[
                               "Mon",
                               "Tue",
@@ -477,14 +477,14 @@ function ProductShowcase() {
                           duration: 0.3,
                         }}
                       >
-                        <div className="rounded-2xl border border-black/5 bg-white p-4 sm:p-5">
+                        <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] p-4 sm:p-5">
                           <div className="flex items-center justify-between">
                             <div>
-                              <p className="text-[9px] text-black/35">
+                              <p className="text-[9px] text-black/35 dark:text-white/55">
                                 Student attention
                               </p>
 
-                              <p className="mt-1 text-base font-bold text-[#111111]">
+                              <p className="mt-1 text-base font-bold text-[#111111] dark:text-white">
                                 Students needing review
                               </p>
                             </div>
@@ -514,9 +514,9 @@ function ProductShowcase() {
                                     delay:
                                       index * 0.08,
                                   }}
-                                  className="flex items-center gap-3 rounded-2xl border border-black/5 bg-[#fafaf8] p-3 transition-all hover:-translate-y-0.5 hover:border-black/10 hover:bg-white hover:shadow-sm"
+                                  className="flex items-center gap-3 rounded-2xl border border-black/5 dark:border-white/10 bg-[#fafaf8] dark:bg-[#191919] p-3 transition-all hover:-translate-y-0.5 hover:border-black/10 dark:border-white/15 hover:bg-white dark:bg-[#151515] hover:shadow-sm"
                                 >
-                                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0f0ed] text-[10px] font-bold text-black/50">
+                                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0f0ed] dark:bg-[#222222] text-[10px] font-bold text-black/50 dark:text-white/60">
                                     {student.initial}
                                   </div>
 
@@ -525,7 +525,7 @@ function ProductShowcase() {
                                       {student.name}
                                     </p>
 
-                                    <p className="mt-0.5 text-[8px] text-black/35">
+                                    <p className="mt-0.5 text-[8px] text-black/35 dark:text-white/55">
                                       {student.status}
                                     </p>
                                   </div>
@@ -548,7 +548,7 @@ function ProductShowcase() {
 
                                   <ArrowUpRight
                                     size={14}
-                                    className="text-black/20"
+                                    className="text-black/20 dark:text-white/35"
                                   />
                                 </motion.div>
                               ),
@@ -557,7 +557,7 @@ function ProductShowcase() {
 
                           <button
                             type="button"
-                            className="mt-4 flex min-h-10 w-full items-center justify-center rounded-xl border border-black/8 bg-[#f7f7f5] text-[10px] font-bold text-[#111111] transition-all hover:border-black/15 hover:bg-[#eeeeea]"
+                            className="mt-4 flex min-h-10 w-full items-center justify-center rounded-xl border border-black/8 dark:border-white/12 bg-[#f7f7f5] dark:bg-[#111111] text-[10px] font-bold text-[#111111] transition-all hover:border-black/15 hover:bg-[#eeeeea] dark:hover:bg-[#242424] dark:bg-[#1b1b1b]"
                           >
                             View all students
                           </button>
@@ -602,7 +602,7 @@ function ProductShowcase() {
                                 delay:
                                   index * 0.1,
                               }}
-                              className="group rounded-2xl border border-black/5 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-black/10 hover:shadow-sm"
+                              className="group rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] p-4 transition-all hover:-translate-y-0.5 hover:border-black/10 dark:border-white/15 hover:shadow-sm"
                             >
                               <div className="flex items-start gap-3">
                                 <div
@@ -635,7 +635,7 @@ function ProductShowcase() {
                                         {insight.title}
                                       </p>
 
-                                      <p className="mt-1 text-[8px] leading-4 text-black/40">
+                                      <p className="mt-1 text-[8px] leading-4 text-black/40 dark:text-white/55">
                                         {
                                           insight.description
                                         }
@@ -689,8 +689,8 @@ function ProductShowcase() {
               </div>
 
               {/* FOOTER */}
-              <div className="border-t border-black/5 bg-white px-4 py-3 text-center">
-                <p className="text-[9px] text-black/25">
+              <div className="border-t border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] px-4 py-3 text-center">
+                <p className="text-[9px] text-black/25 dark:text-white/40">
                   Product preview · Illustrative demo data
                 </p>
               </div>
@@ -717,10 +717,10 @@ function StatCard({
       whileHover={{
         y: -2,
       }}
-      className="rounded-2xl border border-black/5 bg-white p-4"
+      className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] p-4"
     >
       {icon ? (
-        <div className="flex items-center gap-1.5 text-black/35">
+        <div className="flex items-center gap-1.5 text-black/35 dark:text-white/55">
           {icon}
 
           <span className="text-[9px]">
@@ -728,16 +728,16 @@ function StatCard({
           </span>
         </div>
       ) : (
-        <p className="text-[9px] text-black/35">
+        <p className="text-[9px] text-black/35 dark:text-white/55">
           {label}
         </p>
       )}
 
-      <p className="mt-2 text-2xl font-bold text-[#111111]">
+      <p className="mt-2 text-2xl font-bold text-[#111111] dark:text-white">
         {value}
       </p>
 
-      <p className="mt-1 text-[8px] text-black/30">
+      <p className="mt-1 text-[8px] text-black/30 dark:text-white/50">
         {description}
       </p>
     </motion.div>
@@ -746,14 +746,14 @@ function StatCard({
 
 function AttendanceChart() {
   return (
-    <div className="rounded-2xl border border-black/5 bg-white p-4">
+    <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] p-4">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-[9px] text-black/35">
+          <p className="text-[9px] text-black/35 dark:text-white/55">
             Attendance performance
           </p>
 
-          <p className="mt-1 text-sm font-semibold text-[#111111]">
+          <p className="mt-1 text-sm font-semibold text-[#111111] dark:text-white">
             Weekly trend
           </p>
         </div>
@@ -763,7 +763,7 @@ function AttendanceChart() {
         </span>
       </div>
 
-      <div className="mt-6 flex h-36 items-end gap-2 border-b border-black/5">
+      <div className="mt-6 flex h-36 items-end gap-2 border-b border-black/5 dark:border-white/10">
         {[38, 46, 43, 61, 56, 68, 64, 78, 74, 91].map(
           (height, index) => (
             <motion.div
@@ -781,14 +781,14 @@ function AttendanceChart() {
               className={`flex-1 rounded-t-md ${
                 index === 9
                   ? "bg-[#111111]"
-                  : "bg-black/10"
+                  : "bg-black/10 dark:bg-white/10"
               }`}
             />
           ),
         )}
       </div>
 
-      <div className="mt-2 flex justify-between text-[8px] text-black/25">
+      <div className="mt-2 flex justify-between text-[8px] text-black/25 dark:text-white/40">
         <span>Mon</span>
         <span>Tue</span>
         <span>Wed</span>
@@ -802,19 +802,19 @@ function AttendanceChart() {
 
 function StudentMiniList() {
   return (
-    <div className="rounded-2xl border border-black/5 bg-white p-4">
+    <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#151515] p-4">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-[9px] text-black/35">
+          <p className="text-[9px] text-black/35 dark:text-white/55">
             Student attention
           </p>
 
-          <p className="mt-1 text-sm font-semibold text-[#111111]">
+          <p className="mt-1 text-sm font-semibold text-[#111111] dark:text-white">
             Needs review
           </p>
         </div>
 
-        <span className="text-[8px] text-black/30">
+        <span className="text-[8px] text-black/30 dark:text-white/50">
           12 students
         </span>
       </div>
@@ -825,7 +825,7 @@ function StudentMiniList() {
             key={student.name}
             className="flex items-center gap-2"
           >
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f0f0ed] text-[9px] font-semibold text-black/45">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f0f0ed] dark:bg-[#222222] text-[9px] font-semibold text-black/45 dark:text-white/55">
               {student.initial}
             </div>
 
@@ -833,7 +833,7 @@ function StudentMiniList() {
               {student.name}
             </span>
 
-            <span className="text-[8px] font-semibold text-black/35">
+            <span className="text-[8px] font-semibold text-black/35 dark:text-white/55">
               {student.attendance}
             </span>
           </div>
@@ -842,7 +842,7 @@ function StudentMiniList() {
 
       <button
         type="button"
-        className="mt-5 flex min-h-10 w-full items-center justify-center rounded-xl border border-black/8 bg-[#f7f7f5] text-[10px] font-bold text-[#111111] transition-all hover:border-black/15 hover:bg-[#eeeeea]"
+        className="mt-5 flex min-h-10 w-full items-center justify-center rounded-xl border border-black/8 dark:border-white/12 bg-[#f7f7f5] dark:bg-[#111111] text-[10px] font-bold text-[#111111] transition-all hover:border-black/15 hover:bg-[#eeeeea] dark:hover:bg-[#242424] dark:bg-[#1b1b1b]"
       >
         View students
       </button>
@@ -852,8 +852,8 @@ function StudentMiniList() {
 
 function MiniMetric({ label, value }) {
   return (
-    <div className="rounded-xl bg-[#f7f7f5] p-3">
-      <p className="text-[8px] text-black/35">
+    <div className="rounded-xl bg-[#f7f7f5] dark:bg-[#111111] p-3">
+      <p className="text-[8px] text-black/35 dark:text-white/55">
         {label}
       </p>
 

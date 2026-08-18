@@ -173,21 +173,31 @@ function Hero() {
               </motion.a>
 
               {/* Secondary CTA */}
-              <motion.a
-                href="#how-it-works"
-                whileHover={{
-                  y: -3,
-                  scale: 1.015,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                className="inline-flex min-h-[48px] min-w-[160px] items-center justify-center rounded-full border-2 border-black/15 bg-white px-6 py-3.5 text-sm font-bold !text-[#111111] shadow-sm transition-all duration-300 hover:border-black/30 hover:bg-[#fafafa] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
-              >
-                <span className="!text-[#111111]">
-                  See how it works
-                </span>
-              </motion.a>
+<motion.a
+  href="#how-it-works"
+  whileHover={{
+    y: -3,
+    scale: 1.015,
+  }}
+  whileTap={{
+    scale: 0.98,
+  }}
+  style={{
+    backgroundColor: "#ffffff",
+    color: "#111111",
+    borderColor: "rgba(0,0,0,0.18)",
+  }}
+  className="inline-flex min-h-[48px] min-w-[160px] items-center justify-center rounded-full border-2 px-6 py-3.5 text-sm font-bold shadow-sm transition-all duration-300 hover:border-black/30 hover:bg-[#fafafa] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111]"
+>
+  <span
+    style={{
+      color: "#111111",
+    }}
+    className="font-bold"
+  >
+    See how it works
+  </span>
+</motion.a>
             </motion.div>
 
             {/* Trust points */}

@@ -133,6 +133,7 @@ function Insights() {
               inside their classrooms.
             </p>
 
+            {/* FIXED LIGHT CTA */}
             <motion.a
               href="#how-it-works"
               whileHover={{
@@ -141,15 +142,28 @@ function Insights() {
               whileTap={{
                 scale: 0.98,
               }}
-              className="group mt-8 inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-black/15 bg-white px-5 py-3 text-sm font-bold !text-[#111111] shadow-sm transition-all duration-200 hover:border-black/30 hover:bg-[#fafafa] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+              style={{
+                backgroundColor: "#ffffff",
+                color: "#111111",
+                borderColor: "rgba(0, 0, 0, 0.18)",
+              }}
+              className="group mt-8 inline-flex min-h-11 items-center gap-2 rounded-full border-2 px-5 py-3 text-sm font-bold shadow-sm transition-all duration-200 hover:bg-[#fafafa] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              <span className="!text-[#111111]">
+              <span
+                style={{
+                  color: "#111111",
+                }}
+                className="font-bold"
+              >
                 See how insights help
               </span>
 
               <ArrowRight
                 size={15}
-                className="text-[#111111] transition-transform duration-200 group-hover:translate-x-1"
+                style={{
+                  color: "#111111",
+                }}
+                className="transition-transform duration-200 group-hover:translate-x-1"
               />
             </motion.a>
 
@@ -170,9 +184,7 @@ function Insights() {
             >
               <Sparkles size={14} />
 
-              <span>
-                Illustrative product intelligence
-              </span>
+              <span>Illustrative product intelligence</span>
             </motion.div>
           </motion.div>
 
@@ -335,18 +347,25 @@ function Insights() {
                       aria-label={`View ${insight.title}`}
                       aria-expanded={isActive}
                       onClick={() =>
-                        setActiveInsight(
-                          isActive ? null : index,
-                        )
+                        setActiveInsight(isActive ? null : index)
                       }
                       whileTap={{
                         scale: 0.9,
                       }}
-                      className={`hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all sm:flex ${
+                      style={
                         isActive
-                          ? "border-[#111111] bg-[#111111] text-white"
-                          : "border-black/8 bg-white text-black/35 group-hover:border-black/20 group-hover:bg-[#f7f7f5] group-hover:text-black"
-                      }`}
+                          ? {
+                              backgroundColor: "#111111",
+                              color: "#ffffff",
+                              borderColor: "#111111",
+                            }
+                          : {
+                              backgroundColor: "#ffffff",
+                              color: "#111111",
+                              borderColor: "rgba(0,0,0,0.14)",
+                            }
+                      }
+                      className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all sm:flex hover:shadow-sm"
                     >
                       <motion.span
                         animate={{
@@ -356,7 +375,12 @@ function Insights() {
                           duration: 0.2,
                         }}
                       >
-                        <ArrowUpRight size={15} />
+                        <ArrowUpRight
+                          size={15}
+                          style={{
+                            color: isActive ? "#ffffff" : "#111111",
+                          }}
+                        />
                       </motion.span>
                     </motion.button>
                   </div>
@@ -365,16 +389,15 @@ function Insights() {
                   <button
                     type="button"
                     onClick={() =>
-                      setActiveInsight(
-                        isActive ? null : index,
-                      )
+                      setActiveInsight(isActive ? null : index)
                     }
-                    className="relative z-10 mt-4 flex w-full items-center gap-2 border-t border-black/5 pt-3 text-left text-[10px] font-bold text-black/35 sm:hidden"
+                    style={{
+                      color: "#111111",
+                    }}
+                    className="relative z-10 mt-4 flex w-full items-center gap-2 border-t border-black/5 pt-3 text-left text-[10px] font-bold sm:hidden"
                   >
                     <span>
-                      {isActive
-                        ? "Hide insight"
-                        : "View insight"}
+                      {isActive ? "Hide insight" : "View insight"}
                     </span>
 
                     <ArrowRight size={12} />
@@ -471,10 +494,7 @@ function Insights() {
             <div>
               <div className="flex items-center gap-2">
                 <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/10">
-                  <Sparkles
-                    size={12}
-                    className="text-white"
-                  />
+                  <Sparkles size={12} className="text-white" />
                 </div>
 
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
@@ -493,11 +513,7 @@ function Insights() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                {[
-                  "Patterns",
-                  "Trends",
-                  "Student signals",
-                ].map((item) => (
+                {["Patterns", "Trends", "Student signals"].map((item) => (
                   <motion.span
                     key={item}
                     whileHover={{
@@ -512,7 +528,7 @@ function Insights() {
               </div>
             </div>
 
-            {/* Dark CTA — explicit contrast */}
+            {/* Bottom CTA */}
             <motion.a
               href="#how-it-works"
               whileHover={{
@@ -525,10 +541,10 @@ function Insights() {
               style={{
                 backgroundColor: "#111111",
                 color: "#ffffff",
+                borderColor: "rgba(255,255,255,0.3)",
               }}
-              className="group relative inline-flex min-h-12 w-fit items-center justify-center gap-2 overflow-hidden rounded-full border-2 border-white/30 px-6 py-3.5 text-sm font-bold !text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="group relative inline-flex min-h-12 w-fit items-center justify-center gap-2 overflow-hidden rounded-full border-2 px-6 py-3.5 text-sm font-bold shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              {/* CTA shine */}
               <motion.span
                 initial={{
                   x: "-120%",
