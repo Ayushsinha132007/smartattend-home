@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Check,
@@ -16,48 +16,194 @@ function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedRole, setSelectedRole] = useState("Faculty");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!acceptedTerms) return;
+
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 1200);
   };
 
   return (
-    <main className="min-h-screen bg-[#f7f7f5] px-5 py-6 sm:px-8 lg:px-12">
-      <div className="mx-auto flex min-h-[calc(100vh-48px)] max-w-7xl overflow-hidden rounded-[32px] border border-black/8 bg-white shadow-[0_30px_100px_rgba(0,0,0,0.08)]">
-        {/* Left visual panel */}
+    <main className="relative min-h-screen overflow-hidden bg-[#f7f7f5] px-4 py-4 sm:px-6 sm:py-6 lg:px-10">
+      {/* Background atmosphere */}
+      <motion.div
+        aria-hidden="true"
+        animate={{
+          x: [0, 35, 0],
+          y: [0, -20, 0],
+          scale: [1, 1.08, 1],
+          opacity: [0.18, 0.3, 0.18],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="pointer-events-none absolute -left-40 top-10 h-96 w-96 rounded-full bg-[#dff3e8] blur-3xl"
+      />
+
+      <motion.div
+        aria-hidden="true"
+        animate={{
+          x: [0, -25, 0],
+          y: [0, 20, 0],
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[#e7e4d9] opacity-40 blur-3xl"
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-32px)] max-w-7xl overflow-hidden rounded-[30px] border border-black/8 bg-white shadow-[0_30px_100px_rgba(0,0,0,0.08)] sm:min-h-[calc(100vh-48px)] sm:rounded-[32px]">
+        {/* ================================= */}
+        {/* LEFT VISUAL PANEL */}
+        {/* ================================= */}
+
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          initial={{
+            opacity: 0,
+            x: -40,
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="relative hidden overflow-hidden bg-[#111111] p-10 text-white lg:flex lg:w-[46%] lg:flex-col lg:justify-between xl:p-14"
         >
-          <div
+          {/* Animated green orb */}
+          <motion.div
             aria-hidden="true"
-            className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#bcebd3] opacity-20 blur-3xl"
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -20, 0],
+              scale: [1, 1.1, 1],
+              opacity: [0.15, 0.25, 0.15],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#bcebd3] blur-3xl"
           />
 
-          <div
+          {/* Animated bottom orb */}
+          <motion.div
             aria-hidden="true"
-            className="absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-white opacity-5 blur-3xl"
+            animate={{
+              x: [0, -20, 0],
+              y: [0, 20, 0],
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-white opacity-[0.04] blur-3xl"
+          />
+
+          {/* Floating particles */}
+          <motion.span
+            animate={{
+              y: [0, -14, 0],
+              opacity: [0.2, 0.55, 0.2],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+            }}
+            className="absolute left-[20%] top-[35%] h-1.5 w-1.5 rounded-full bg-white"
+          />
+
+          <motion.span
+            animate={{
+              y: [0, 12, 0],
+              opacity: [0.15, 0.45, 0.15],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              delay: 1,
+            }}
+            className="absolute right-[20%] top-[25%] h-1 w-1 rounded-full bg-[#bcebd3]"
           />
 
           <div className="relative z-10">
-            <Link
-              to="/"
-              className="flex w-fit items-center gap-2"
+            {/* Logo */}
+            <motion.div
+              whileHover={{
+                y: -2,
+              }}
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-bold text-[#111111]">
-                S
-              </span>
+              <Link
+                to="/"
+                className="group flex w-fit items-center gap-2"
+              >
+                <motion.span
+                  whileHover={{
+                    rotate: -8,
+                    scale: 1.08,
+                  }}
+                  className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-white text-sm font-bold text-[#111111]"
+                >
+                  <motion.span
+                    animate={{
+                      x: ["-120%", "120%"],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                    }}
+                    className="absolute inset-y-0 w-5 -skew-x-12 bg-black/5 blur-sm"
+                  />
 
-              <span className="font-[Manrope] text-lg font-bold">
-                SmartAttend
-              </span>
-            </Link>
+                  <span className="relative z-10">
+                    S
+                  </span>
+                </motion.span>
 
-            <div className="mt-20 max-w-md">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3 py-2 text-xs font-semibold text-white/70">
-                <Sparkles size={13} />
+                <span className="font-[Manrope] text-lg font-bold">
+                  SmartAttend
+                </span>
+              </Link>
+            </motion.div>
+
+            {/* Hero copy */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.25,
+              }}
+              className="mt-20 max-w-md"
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-2 text-xs font-semibold text-white/70 backdrop-blur-sm">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#dff5e9] text-[#248557]">
+                  <Sparkles size={11} />
+                </span>
+
                 Attendance intelligence
               </div>
 
@@ -70,12 +216,33 @@ function SignupPage() {
                 patterns, and classroom insights together in one focused
                 experience.
               </p>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="relative z-10">
+          {/* Stats */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.45,
+            }}
+            className="relative z-10"
+          >
             <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+              {/* Attendance */}
+              <motion.div
+                whileHover={{
+                  y: -4,
+                }}
+                className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 backdrop-blur-sm"
+              >
                 <p className="text-[10px] font-medium text-white/35">
                   Attendance
                 </p>
@@ -84,12 +251,31 @@ function SignupPage() {
                   92.4%
                 </p>
 
-                <div className="mt-3 h-1 rounded-full bg-white/10">
-                  <div className="h-1 w-[92%] rounded-full bg-white" />
+                <div className="mt-3 h-1 overflow-hidden rounded-full bg-white/10">
+                  <motion.div
+                    initial={{
+                      width: 0,
+                    }}
+                    animate={{
+                      width: "92%",
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 0.8,
+                      ease: "easeOut",
+                    }}
+                    className="h-1 rounded-full bg-white"
+                  />
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+              {/* Weekly trend */}
+              <motion.div
+                whileHover={{
+                  y: -4,
+                }}
+                className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 backdrop-blur-sm"
+              >
                 <p className="text-[10px] font-medium text-white/35">
                   Weekly trend
                 </p>
@@ -101,39 +287,81 @@ function SignupPage() {
                 <p className="mt-2 text-[10px] text-[#9be4bd]">
                   Improving this week
                 </p>
-              </div>
+              </motion.div>
             </div>
 
             <div className="mt-4 flex items-center gap-2 text-[10px] text-white/35">
               <ShieldCheck size={13} />
+
               <span>Secure account experience</span>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Form panel */}
+        {/* ================================= */}
+        {/* FORM PANEL */}
+        {/* ================================= */}
+
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          initial={{
+            opacity: 0,
+            x: 40,
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            delay: 0.1,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="flex w-full items-center justify-center p-6 sm:p-10 lg:w-[54%] lg:p-14"
         >
           <div className="w-full max-w-md">
             {/* Mobile logo */}
-            <Link
-              to="/"
-              className="mb-10 flex w-fit items-center gap-2 lg:hidden"
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: -10,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.3,
+              }}
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#111111] text-sm font-bold text-white">
-                S
-              </span>
+              <Link
+                to="/"
+                className="mb-10 flex w-fit items-center gap-2 lg:hidden"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#111111] text-sm font-bold text-white">
+                  S
+                </span>
 
-              <span className="font-[Manrope] text-base font-bold text-[#111111]">
-                SmartAttend
-              </span>
-            </Link>
+                <span className="font-[Manrope] text-base font-bold text-[#111111]">
+                  SmartAttend
+                </span>
+              </Link>
+            </motion.div>
 
-            <div>
+            {/* Heading */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 18,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.25,
+              }}
+            >
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-black/35">
                 Create your account
               </p>
@@ -145,14 +373,27 @@ function SignupPage() {
               <p className="mt-3 text-sm leading-6 text-black/45">
                 Set up your workspace in less than a minute.
               </p>
-            </div>
+            </motion.div>
 
+            {/* Form */}
             <form
               onSubmit={handleSubmit}
               className="mt-8 space-y-5"
             >
               {/* Name */}
-              <div>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 14,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: 0.35,
+                }}
+              >
                 <label
                   htmlFor="name"
                   className="mb-2 block text-xs font-bold text-[#111111]"
@@ -168,10 +409,22 @@ function SignupPage() {
                   required
                   className="h-12 w-full rounded-2xl border border-black/10 bg-[#fafaf8] px-4 text-sm text-[#111111] outline-none transition-all placeholder:text-black/25 focus:border-black/30 focus:bg-white focus:ring-4 focus:ring-black/[0.04]"
                 />
-              </div>
+              </motion.div>
 
               {/* Email */}
-              <div>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 14,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: 0.42,
+                }}
+              >
                 <label
                   htmlFor="email"
                   className="mb-2 block text-xs font-bold text-[#111111]"
@@ -187,38 +440,77 @@ function SignupPage() {
                   required
                   className="h-12 w-full rounded-2xl border border-black/10 bg-[#fafaf8] px-4 text-sm text-[#111111] outline-none transition-all placeholder:text-black/25 focus:border-black/30 focus:bg-white focus:ring-4 focus:ring-black/[0.04]"
                 />
-              </div>
+              </motion.div>
 
               {/* Role */}
-              <div>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 14,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: 0.49,
+                }}
+              >
                 <label className="mb-2 block text-xs font-bold text-[#111111]">
                   I am a
                 </label>
 
                 <div className="grid grid-cols-3 gap-2">
                   {roles.map((role) => {
-                    const isSelected = selectedRole === role;
+                    const isSelected =
+                      selectedRole === role;
 
                     return (
-                      <button
+                      <motion.button
                         key={role}
                         type="button"
-                        onClick={() => setSelectedRole(role)}
-                        className={`rounded-2xl border px-3 py-3 text-xs font-bold transition-all ${
+                        whileTap={{
+                          scale: 0.96,
+                        }}
+                        onClick={() =>
+                          setSelectedRole(role)
+                        }
+                        className={`relative overflow-hidden rounded-2xl border px-3 py-3 text-xs font-bold transition-all ${
                           isSelected
-                            ? "border-[#111111] bg-[#111111] text-white shadow-sm"
-                            : "border-black/10 bg-[#fafaf8] text-black/50 hover:border-black/20 hover:text-black"
+                            ? "border-[#111111] bg-[#111111] text-white shadow-[0_8px_20px_rgba(0,0,0,0.12)]"
+                            : "border-black/10 bg-[#fafaf8] text-black/50 hover:border-black/20 hover:bg-white hover:text-black"
                         }`}
                       >
-                        {role}
-                      </button>
+                        {isSelected && (
+                          <motion.span
+                            layoutId="selected-role"
+                            className="absolute inset-0 bg-[#111111]"
+                          />
+                        )}
+
+                        <span className="relative z-10">
+                          {role}
+                        </span>
+                      </motion.button>
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Password */}
-              <div>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 14,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: 0.56,
+                }}
+              >
                 <label
                   htmlFor="password"
                   className="mb-2 block text-xs font-bold text-[#111111]"
@@ -230,17 +522,26 @@ function SignupPage() {
                   <input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type={
+                      showPassword
+                        ? "text"
+                        : "password"
+                    }
                     placeholder="Create a strong password"
                     minLength={8}
                     required
                     className="h-12 w-full rounded-2xl border border-black/10 bg-[#fafaf8] px-4 pr-12 text-sm text-[#111111] outline-none transition-all placeholder:text-black/25 focus:border-black/30 focus:bg-white focus:ring-4 focus:ring-black/[0.04]"
                   />
 
-                  <button
+                  <motion.button
                     type="button"
+                    whileTap={{
+                      scale: 0.9,
+                    }}
                     onClick={() =>
-                      setShowPassword((visible) => !visible)
+                      setShowPassword(
+                        (visible) => !visible,
+                      )
                     }
                     className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl text-black/35 transition-colors hover:bg-black/[0.04] hover:text-black"
                     aria-label={
@@ -249,25 +550,80 @@ function SignupPage() {
                         : "Show password"
                     }
                   >
-                    {showPassword ? (
-                      <EyeOff size={17} />
-                    ) : (
-                      <Eye size={17} />
-                    )}
-                  </button>
+                    <AnimatePresence
+                      mode="wait"
+                      initial={false}
+                    >
+                      {showPassword ? (
+                        <motion.span
+                          key="eye-off"
+                          initial={{
+                            opacity: 0,
+                            scale: 0.7,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            scale: 1,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            scale: 0.7,
+                          }}
+                        >
+                          <EyeOff size={17} />
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="eye"
+                          initial={{
+                            opacity: 0,
+                            scale: 0.7,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            scale: 1,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            scale: 0.7,
+                          }}
+                        >
+                          <Eye size={17} />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
                 </div>
 
                 <p className="mt-2 text-[10px] text-black/30">
                   Use at least 8 characters.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Terms */}
-              <label className="flex cursor-pointer items-start gap-3">
-                <button
+              <motion.label
+                initial={{
+                  opacity: 0,
+                  y: 10,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: 0.63,
+                }}
+                className="flex cursor-pointer items-start gap-3"
+              >
+                <motion.button
                   type="button"
+                  whileTap={{
+                    scale: 0.9,
+                  }}
                   onClick={() =>
-                    setAcceptedTerms((accepted) => !accepted)
+                    setAcceptedTerms(
+                      (accepted) => !accepted,
+                    )
                   }
                   className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all ${
                     acceptedTerms
@@ -276,8 +632,27 @@ function SignupPage() {
                   }`}
                   aria-label="Accept terms"
                 >
-                  {acceptedTerms && <Check size={12} />}
-                </button>
+                  <AnimatePresence>
+                    {acceptedTerms && (
+                      <motion.span
+                        initial={{
+                          opacity: 0,
+                          scale: 0.5,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          scale: 1,
+                        }}
+                        exit={{
+                          opacity: 0,
+                          scale: 0.5,
+                        }}
+                      >
+                        <Check size={12} />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
 
                 <span className="text-[11px] leading-5 text-black/40">
                   I agree to the{" "}
@@ -290,39 +665,105 @@ function SignupPage() {
                   </span>
                   .
                 </span>
-              </label>
+              </motion.label>
 
               {/* Submit */}
               <motion.button
                 type="submit"
-                whileHover={{
-                  y: -2,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                disabled={!acceptedTerms}
-                className={`group flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold transition-all ${
+                whileHover={
+                  acceptedTerms
+                    ? {
+                        y: -2,
+                      }
+                    : undefined
+                }
+                whileTap={
+                  acceptedTerms
+                    ? {
+                        scale: 0.98,
+                      }
+                    : undefined
+                }
+                disabled={
+                  !acceptedTerms || isSubmitting
+                }
+                className={`group relative flex min-h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-sm font-bold transition-all ${
                   acceptedTerms
                     ? "bg-[#111111] text-white shadow-[0_10px_25px_rgba(0,0,0,0.14)] hover:bg-black hover:shadow-[0_15px_35px_rgba(0,0,0,0.20)]"
                     : "cursor-not-allowed bg-black/10 text-black/30"
                 }`}
               >
-                Create account
+                {acceptedTerms && !isSubmitting && (
+                  <motion.span
+                    initial={{
+                      x: "-120%",
+                    }}
+                    whileHover={{
+                      x: "120%",
+                    }}
+                    transition={{
+                      duration: 0.6,
+                    }}
+                    className="pointer-events-none absolute inset-y-0 w-12 -skew-x-12 bg-white/10 blur-sm"
+                  />
+                )}
 
-                <ArrowRight
-                  size={16}
-                  className={`transition-transform ${
-                    acceptedTerms
-                      ? "group-hover:translate-x-1"
-                      : ""
-                  }`}
-                />
+                {isSubmitting ? (
+                  <>
+                    <motion.span
+                      animate={{
+                        rotate: 360,
+                      }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white"
+                    />
+
+                    <span className="relative z-10 text-white">
+                      Creating account...
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span
+                      className={
+                        acceptedTerms
+                          ? "relative z-10 text-white"
+                          : "relative z-10"
+                      }
+                    >
+                      Create account
+                    </span>
+
+                    <ArrowRight
+                      size={16}
+                      className={`relative z-10 transition-transform ${
+                        acceptedTerms
+                          ? "text-white group-hover:translate-x-1"
+                          : ""
+                      }`}
+                    />
+                  </>
+                )}
               </motion.button>
             </form>
 
             {/* Sign in */}
-            <p className="mt-7 text-center text-xs text-black/40">
+            <motion.p
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: 0.75,
+              }}
+              className="mt-7 text-center text-xs text-black/40"
+            >
               Already have an account?{" "}
               <Link
                 to="/signin"
@@ -330,7 +771,7 @@ function SignupPage() {
               >
                 Sign in
               </Link>
-            </p>
+            </motion.p>
 
             <p className="mt-8 text-center text-[9px] text-black/25">
               Product concept · Authentication UI demonstration
