@@ -4,23 +4,51 @@
 
 :root {
   font-family: "DM Sans", sans-serif;
+
   color: #111111;
   background: #f7f7f5;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --page-bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-soft: #f0f0ed;
+  --surface-muted: #e8e8e3;
+
+  --text-primary: #111111;
+  --text-secondary: rgba(17, 17, 17, 0.55);
+  --text-muted: rgba(17, 17, 17, 0.4);
+
+  --border: rgba(17, 17, 17, 0.08);
+  --border-strong: rgba(17, 17, 17, 0.15);
+
+  --accent: #dff5e9;
+  --accent-strong: #28734e;
+
+  color-scheme: light;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--page-bg);
 }
 
 body {
   margin: 0;
+
   min-width: 320px;
   min-height: 100vh;
-  background: #f7f7f5;
+
+  background: var(--page-bg);
+  color: var(--text-primary);
+
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
 * {
@@ -46,15 +74,116 @@ svg {
   max-width: 100%;
 }
 
-:focus-visible {
-  outline: 2px solid #111111;
-  outline-offset: 3px;
+button {
+  cursor: pointer;
 }
 
 ::selection {
   background: #111111;
   color: #ffffff;
 }
+
+:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+/* -------------------------------- */
+/* Smooth theme transitions          */
+/* -------------------------------- */
+
+html,
+body,
+header,
+nav,
+section,
+footer,
+div,
+a,
+button,
+article,
+span,
+p,
+h1,
+h2,
+h3 {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* -------------------------------- */
+/* Dark theme foundation             */
+/* -------------------------------- */
+
+html.dark {
+  color-scheme: dark;
+
+  --page-bg: #0b0b0b;
+  --surface: #151515;
+  --surface-soft: #1c1c1c;
+  --surface-muted: #242424;
+
+  --text-primary: #f5f5f3;
+  --text-secondary: rgba(245, 245, 243, 0.62);
+  --text-muted: rgba(245, 245, 243, 0.42);
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
+
+  --accent: #183c2c;
+  --accent-strong: #9be4bd;
+}
+
+html.dark body {
+  background: var(--page-bg);
+  color: var(--text-primary);
+}
+
+/* -------------------------------- */
+/* Scrollbar                         */
+/* -------------------------------- */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(17, 17, 17, 0.25) transparent;
+}
+
+html.dark {
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.2);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* -------------------------------- */
+/* Selection                         */
+/* -------------------------------- */
+
+html.dark ::selection {
+  background: #ffffff;
+  color: #111111;
+}
+
+/* -------------------------------- */
+/* Reduced motion                    */
+/* -------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -68,5 +197,16 @@ svg {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------- */
+/* Mobile safety                     */
+/* -------------------------------- */
+
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: hidden;
   }
 }
