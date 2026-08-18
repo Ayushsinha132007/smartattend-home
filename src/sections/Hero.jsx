@@ -10,10 +10,15 @@ import {
 function Hero() {
   return (
     <section className="relative overflow-hidden px-6 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-44">
-      {/* Background glow */}
+      {/* Background atmosphere */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#dff5ec] opacity-70 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-[-180px] -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#dff5ec] opacity-70 blur-3xl"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[-120px] top-[280px] -z-10 h-[280px] w-[280px] rounded-full bg-[#e9e7df] opacity-60 blur-3xl"
       />
 
       <div className="mx-auto max-w-7xl">
@@ -29,14 +34,14 @@ function Hero() {
               <span>Attendance intelligence, reimagined</span>
             </div>
 
-            <h1 className="max-w-3xl font-[Manrope] text-5xl font-extrabold leading-[1.02] tracking-[-0.045em] text-[#111111] sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-3xl font-[Manrope] text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.055em] text-[#111111] sm:text-6xl lg:text-7xl">
               Know your classroom.
-              <span className="block text-black/45">
+              <span className="block text-black/40">
                 Before it becomes a problem.
               </span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-base leading-7 text-black/55 sm:text-lg">
+            <p className="mt-7 max-w-xl text-base leading-7 text-black/55 sm:text-lg sm:leading-8">
               SmartAttend turns everyday attendance data into clear,
               actionable classroom insights — so faculty can spend less time
               managing spreadsheets and more time teaching.
@@ -45,9 +50,10 @@ function Hero() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#product"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#111111] px-5 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#111111] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_35px_rgba(0,0,0,0.16)]"
               >
                 Explore the platform
+
                 <ArrowRight
                   size={16}
                   className="transition-transform duration-200 group-hover:translate-x-1"
@@ -56,7 +62,7 @@ function Hero() {
 
               <a
                 href="#how-it-works"
-                className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/60 px-5 py-3.5 text-sm font-semibold text-[#111111] backdrop-blur-sm transition-all duration-200 hover:border-black/20 hover:bg-white"
+                className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/60 px-5 py-3.5 text-sm font-semibold text-[#111111] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-black/20 hover:bg-white"
               >
                 See how it works
               </a>
@@ -83,14 +89,37 @@ function Hero() {
           {/* Dashboard preview */}
           <motion.div
             initial={{ opacity: 0, y: 35, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+            animate={{
+              opacity: 1,
+              y: [0, -6, 0],
+              scale: 1,
+            }}
+            transition={{
+              opacity: {
+                duration: 0.8,
+                delay: 0.15,
+                ease: "easeOut",
+              },
+              scale: {
+                duration: 0.8,
+                delay: 0.15,
+                ease: "easeOut",
+              },
+              y: {
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              },
+            }}
             className="relative"
           >
-            <div className="absolute -right-5 -top-5 h-28 w-28 rounded-full bg-[#cfeee0] opacity-70 blur-2xl" />
+            <div
+              aria-hidden="true"
+              className="absolute -right-5 -top-5 h-28 w-28 rounded-full bg-[#cfeee0] opacity-70 blur-2xl"
+            />
 
-            <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-white p-3 shadow-[0_30px_80px_rgba(0,0,0,0.10)]">
-              {/* Browser-style header */}
+            <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-white p-3 shadow-[0_35px_100px_rgba(0,0,0,0.12)]">
+              {/* Browser header */}
               <div className="flex items-center justify-between border-b border-black/5 px-4 py-3">
                 <div className="flex gap-1.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-black/10" />
@@ -113,6 +142,7 @@ function Hero() {
                     <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-xs font-bold text-black">
                       S
                     </div>
+
                     <span className="text-xs font-semibold">
                       SmartAttend
                     </span>
@@ -139,6 +169,7 @@ function Hero() {
                     <p className="text-[9px] text-white/40">
                       This week's trend
                     </p>
+
                     <p className="mt-1 text-lg font-semibold">+4.2%</p>
                   </div>
                 </div>
@@ -150,6 +181,7 @@ function Hero() {
                       <p className="text-[10px] font-medium text-black/35">
                         Tuesday, August 18
                       </p>
+
                       <h2 className="mt-1 text-sm font-bold text-[#111111]">
                         Good morning, Professor
                       </h2>
@@ -166,6 +198,7 @@ function Hero() {
                         <span className="text-[9px] text-white/45">
                           Attendance
                         </span>
+
                         <TrendingUp size={12} />
                       </div>
 
@@ -180,9 +213,11 @@ function Hero() {
                       <span className="text-[9px] text-black/35">
                         Classes today
                       </span>
+
                       <p className="mt-2 text-2xl font-bold text-[#111111]">
                         08
                       </p>
+
                       <p className="mt-1 text-[9px] text-black/35">
                         6 completed
                       </p>
@@ -195,6 +230,7 @@ function Hero() {
                         <p className="text-[9px] text-black/35">
                           Attendance trend
                         </p>
+
                         <p className="mt-1 text-xs font-semibold">
                           Weekly overview
                         </p>
@@ -243,7 +279,9 @@ function Hero() {
                       <p className="text-[9px] text-black/35">
                         Needs attention
                       </p>
+
                       <p className="mt-1 text-lg font-bold">12</p>
+
                       <p className="text-[8px] text-black/30">
                         students below 75%
                       </p>
@@ -253,7 +291,9 @@ function Hero() {
                       <p className="text-[9px] text-black/35">
                         Classes tracked
                       </p>
+
                       <p className="mt-1 text-lg font-bold">24</p>
+
                       <p className="text-[8px] text-black/30">
                         this semester
                       </p>
@@ -262,7 +302,6 @@ function Hero() {
                 </div>
               </div>
 
-              {/* Demo data notice */}
               <div className="border-t border-black/5 px-4 py-2.5 text-center">
                 <p className="text-[9px] text-black/30">
                   Product preview · Illustrative demo data
